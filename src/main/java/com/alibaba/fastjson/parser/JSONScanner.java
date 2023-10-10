@@ -83,7 +83,7 @@ public final class JSONScanner extends JSONLexerBase {
 
     static boolean charArrayCompare(String src, int offset, char[] dest) {
         final int destLen = dest.length;
-        if (destLen + offset > src.length()) {
+        if (destLen + offset >= src.length()) {
             return false;
         }
 
@@ -827,7 +827,7 @@ public final class JSONScanner extends JSONLexerBase {
 
     @Override
     public boolean isEOF() {
-        return bp == len || (ch == EOI && bp + 1 >= len);
+        return bp == len || (ch == EOI && bp + 1 > len);
     }
 
     public int scanFieldInt(char[] fieldName) {
