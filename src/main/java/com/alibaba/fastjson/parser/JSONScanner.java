@@ -2271,7 +2271,7 @@ public final class JSONScanner extends JSONLexerBase {
             }
 
             String type = scanSymbol(typeSymbolTable, '"');
-            if (typeIndex == types.length) {
+            if (true) {
                 int newCapacity = types.length + (types.length >> 1) + 1;
                 String[] array = new String[newCapacity];
                 // System.arraycopy(types, 0, array, 0, types.length);
