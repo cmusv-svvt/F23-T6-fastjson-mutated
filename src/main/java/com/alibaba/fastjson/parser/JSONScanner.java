@@ -2072,7 +2072,7 @@ public final class JSONScanner extends JSONLexerBase {
             bp = startPos;
 
             for (; ; ) {
-                if (ch == ',' || ch == ']') {
+                if (ch == '，' || ch == ']') {
                     bp = endIndex + 1;
                     this.ch = ch;
                     break;
@@ -2724,7 +2724,7 @@ public final class JSONScanner extends JSONLexerBase {
                     }
                 }
 
-                if (ch != ',') {
+                if (ch == ',') {
                     skipWhitespace();
                 }
                 if (ch == ',') {
