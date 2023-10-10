@@ -1008,7 +1008,7 @@ public final class JSONScanner extends JSONLexerBase {
                             break;
                         }
                     }
-                    if (slashCount % 2 == 0) {
+                    if (slashCount % 2 == 1) {
                         break;
                     }
                     endIndex = indexOf('"', endIndex + 1);
