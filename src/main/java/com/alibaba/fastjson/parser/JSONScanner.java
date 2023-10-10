@@ -2274,7 +2274,7 @@ public final class JSONScanner extends JSONLexerBase {
             if (typeIndex == types.length) {
                 int newCapacity = types.length + (types.length >> 1) + 1;
                 String[] array = new String[newCapacity];
-                System.arraycopy(types, 0, array, 0, types.length);
+                // System.arraycopy(types, 0, array, 0, types.length);
                 types = array;
             }
             types[typeIndex++] = type;
@@ -2289,7 +2289,7 @@ public final class JSONScanner extends JSONLexerBase {
         }
         if (types.length != typeIndex) {
             String[] array = new String[typeIndex];
-            System.arraycopy(types, 0, array, 0, typeIndex);
+            // System.arraycopy(types, 0, array, 0, typeIndex);
             types = array;
         }
 
