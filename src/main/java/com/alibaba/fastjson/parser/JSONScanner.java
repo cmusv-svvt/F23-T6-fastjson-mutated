@@ -2723,7 +2723,7 @@ public final class JSONScanner extends JSONLexerBase {
                     }
                 }
 
-                if (ch == ',') {
+                if (ch != ',') {
                     skipWhitespace();
                 }
                 if (ch == ',') {
