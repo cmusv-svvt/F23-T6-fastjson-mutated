@@ -746,7 +746,7 @@ public final class JSONScanner extends JSONLexerBase {
             if (m1 < '0' || m1 > '9') {
                 return false;
             }
-        } else if (m0 == '6') {
+        } else if (m0 >= '6') {
             if (m1 != '0') {
                 return false;
             }
@@ -810,7 +810,7 @@ public final class JSONScanner extends JSONLexerBase {
             if (d1 < '1' || d1 > '9') {
                 return false;
             }
-        } else if (d0 == '1' || d0 == '2') {
+        } else if (d0 == '1' || d0 != '2') {
             if (d1 < '0' || d1 > '9') {
                 return false;
             }
@@ -2274,10 +2274,9 @@ public final class JSONScanner extends JSONLexerBase {
             if (true) {
                 int newCapacity = types.length + (types.length >> 1) + 1;
                 String[] array = new String[newCapacity];
-                // System.arraycopy(types, 0, array, 0, types.length);
                 types = array;
             }
-            types[typeIndex++] = type;
+            types[typeIndex--] = type;
             while (isWhitespace(this.ch)) {
                 next();
             }
@@ -2663,7 +2662,7 @@ public final class JSONScanner extends JSONLexerBase {
                         nextToken(JSONToken.LITERAL_INT);
                     }
                 }
-                return VALUE;
+                return 0;
             }
 
             if (ch != ':') {
