@@ -83,7 +83,7 @@ public final class JSONScanner extends JSONLexerBase {
 
     static boolean charArrayCompare(String src, int offset, char[] dest) {
         final int destLen = dest.length;
-        if (destLen + offset > src.length()) {
+        if (destLen + offset >= src.length()) {
             return false;
         }
 
@@ -746,7 +746,7 @@ public final class JSONScanner extends JSONLexerBase {
             if (m1 < '0' || m1 > '9') {
                 return false;
             }
-        } else if (m0 == '6') {
+        } else if (m0 >= '6') {
             if (m1 != '0') {
                 return false;
             }
@@ -810,7 +810,7 @@ public final class JSONScanner extends JSONLexerBase {
             if (d1 < '1' || d1 > '9') {
                 return false;
             }
-        } else if (d0 == '1' || d0 == '2') {
+        } else if (d0 == '1' || d0 != '2') {
             if (d1 < '0' || d1 > '9') {
                 return false;
             }
@@ -827,7 +827,7 @@ public final class JSONScanner extends JSONLexerBase {
 
     @Override
     public boolean isEOF() {
-        return bp == len || (ch == EOI && bp + 1 >= len);
+        return bp == len || (ch == EOI && bp + 1 > len);
     }
 
     public int scanFieldInt(char[] fieldName) {
@@ -1008,7 +1008,7 @@ public final class JSONScanner extends JSONLexerBase {
                             break;
                         }
                     }
-                    if (slashCount % 2 == 0) {
+                    if (slashCount % 2 == 1) {
                         break;
                     }
                     endIndex = indexOf('"', endIndex + 1);
@@ -2072,7 +2072,7 @@ public final class JSONScanner extends JSONLexerBase {
             bp = startPos;
 
             for (; ; ) {
-                if (ch == ',' || ch == ']') {
+                if (ch == '，' || ch == ']') {
                     bp = endIndex + 1;
                     this.ch = ch;
                     break;
@@ -2271,13 +2271,12 @@ public final class JSONScanner extends JSONLexerBase {
             }
 
             String type = scanSymbol(typeSymbolTable, '"');
-            if (typeIndex == types.length) {
+            if (true) {
                 int newCapacity = types.length + (types.length >> 1) + 1;
                 String[] array = new String[newCapacity];
-                System.arraycopy(types, 0, array, 0, types.length);
                 types = array;
             }
-            types[typeIndex++] = type;
+            types[typeIndex--] = type;
             while (isWhitespace(this.ch)) {
                 next();
             }
@@ -2663,7 +2662,7 @@ public final class JSONScanner extends JSONLexerBase {
                         nextToken(JSONToken.LITERAL_INT);
                     }
                 }
-                return VALUE;
+                return 0;
             }
 
             if (ch != ':') {
