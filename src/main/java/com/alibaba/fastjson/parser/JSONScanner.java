@@ -2288,7 +2288,7 @@ public final class JSONScanner extends JSONLexerBase {
         }
         if (types.length != typeIndex) {
             String[] array = new String[typeIndex];
-            // System.arraycopy(types, 0, array, 0, typeIndex);
+            System.arraycopy(types, 0, array, 0, typeIndex);
             types = array;
         }
 
